@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
+    var ballImages = [String]()
     var scoreLbl: SKLabelNode!
     var editLbl: SKLabelNode!
     
@@ -62,6 +62,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         editLbl.text = "Edit"
         editLbl.position = CGPoint(x: 80, y: 700)
         addChild(editLbl)
+        
+        let fm = FileManager.default
+        let path = Bundle.main.resourcePath!
+        let items = try! fm.contentsOfDirectory(atPath: path)
+        for item in items{
+            if item.hasPrefix("ball") && !item.hasSuffix("@2x.png") && !item.hasSuffix("@3x.png"){
+                ballImages.append(item)
+            }
+        }
+        print(ballImages)
 
     }
     
@@ -113,10 +123,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func destroy(ball: SKNode){
-        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles"){
+        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles.sks"){
             fireParticles.position = ball.position
             addChild(fireParticles)
+            
         }
+
         ball.removeFromParent()
     }
     
@@ -145,20 +157,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 editingMode = !editingMode
             } else{
                 if editingMode{
+                    //print(location)
+                    
                     let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
+                    //print("Size: \(size)")
                     let box = SKSpriteNode(color: RandomColor(), size: size)
                     box.zRotation = RandomCGFloat(min: 0, max: 3)
                     box.position = location
-                    
                     box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                     box.physicsBody?.isDynamic = false
                     addChild(box)
                 } else{
-                    let ball = SKSpriteNode(imageNamed: "ballRed")
+                    let ballNum = RandomInt(min: 0, max: (ballImages.count-1))
+                    let ball = SKSpriteNode(imageNamed: ballImages[ballNum])
                     ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                     ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
                     ball.physicsBody?.restitution = 0.4 //bounciness
-                    ball.position = location
+                    ball.position = CGPoint(x: location.x, y: 768)
                     ball.name = "ball"
                     addChild(ball)
                 }
