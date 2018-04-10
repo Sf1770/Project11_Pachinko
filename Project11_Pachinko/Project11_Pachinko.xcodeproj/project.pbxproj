@@ -42,6 +42,7 @@
 		04C5816E207D339100CADBE8 /* ballGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C58153207D339100CADBE8 /* ballGreen.png */; };
 		04C5816F207D339100CADBE8 /* bouncer.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C58154207D339100CADBE8 /* bouncer.png */; };
 		04C58170207D339100CADBE8 /* ballBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C58155207D339100CADBE8 /* ballBlue.png */; };
+		04C58172207D3FA000CADBE8 /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04C58171207D3FA000CADBE8 /* FireParticles.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		04C58153207D339100CADBE8 /* ballGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ballGreen.png; sourceTree = "<group>"; };
 		04C58154207D339100CADBE8 /* bouncer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bouncer.png; sourceTree = "<group>"; };
 		04C58155207D339100CADBE8 /* ballBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ballBlue.png; sourceTree = "<group>"; };
+		04C58171207D3FA000CADBE8 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticles.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		04C5813A207D339100CADBE8 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				04C58171207D3FA000CADBE8 /* FireParticles.sks */,
 				04C5813B207D339100CADBE8 /* ballGrey.png */,
 				04C5813C207D339100CADBE8 /* ballBlue@2x.png */,
 				04C5813D207D339100CADBE8 /* slotGlowBad@2x.png */,
@@ -250,6 +253,7 @@
 				04C58169207D339100CADBE8 /* slotGlowBad.png in Resources */,
 				04C58161207D339100CADBE8 /* spark.png in Resources */,
 				04C5815B207D339100CADBE8 /* ballRed.png in Resources */,
+				04C58172207D3FA000CADBE8 /* FireParticles.sks in Resources */,
 				04C5816A207D339100CADBE8 /* ballCyan@2x.png in Resources */,
 				04C58158207D339100CADBE8 /* slotGlowBad@2x.png in Resources */,
 			);
