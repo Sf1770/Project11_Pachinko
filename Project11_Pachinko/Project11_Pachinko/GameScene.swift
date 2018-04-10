@@ -220,11 +220,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else{
                 if editingMode {
                     //print(location)
-                    if objects.count == 1{
-                        //checks to see if there an object in that position, 1 means there is no object at that location
+                    if objects.contains(where: { $0.name == "obstacle"}){
+                        //checks to see if there is an obstacle at this location, if so, it will loop through the objects array and remove that obstacle
+                        for object in objects{
+                            if object.name == "obstacle"{
+                                object.removeFromParent()
+                                obstacles -= 1
+                            }
+                        }
+                    } else{
+                        //Objects array does not have an obstacle at that position
                         let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
                         let box = SKSpriteNode(color: RandomColor(), size: size)
-                    
+                        
                         //indicates that there is no object in this location that we have just clicked on
                         box.zRotation = RandomCGFloat(min: 0, max: 3)
                         box.position = location
@@ -233,22 +241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         box.physicsBody?.isDynamic = false
                         addChild(box)
                         obstacles += 1
-                    } else{
-                        //means that there are objects at this position, could be an obstacle box, or a bouncer, slotGlow,etc
-                        //removes the object only if it is an obstacle
-                        
-                        var obstacle = false
-                        for object in objects{
-                            //loops through the objects array and sets the bool obstacle equal to true only if an obstacle box is found otherwise no obstacle box will be created
-                            if object.name == "obstacle"{
-                                obstacle = true
-                            }
-                        }
-                        if obstacle{
-                            //checks if the obstacle bool is set to true, and if so the obstacle box is removed
-                            objects[0].removeFromParent()
-                            obstacles -= 1
-                        }
+                    
                     }
                 } else if (!editingMode && (obstacles >= obstacleBoxes)){
                     //only allowed to drop a ball if 10 obstacle boxes are made, and if ballCount isn't great than numOfBalls constant
